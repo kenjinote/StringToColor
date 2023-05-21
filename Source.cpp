@@ -12,7 +12,6 @@ TCHAR szClassName[] = TEXT("Window");
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	static HWND hButton;
 	static HWND hEdit;
 	static HWND hStatic;
 	static HBRUSH hBrush;
@@ -20,7 +19,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_CREATE:
-		hButton = CreateWindow(TEXT("BUTTON"), TEXT("変換"), WS_VISIBLE | WS_CHILD, 0, 0, 0, 0, hWnd, (HMENU)IDOK, ((LPCREATESTRUCT)lParam)->hInstance, 0);
 		hEdit = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), 0, WS_VISIBLE | WS_CHILD | ES_MULTILINE | ES_AUTOHSCROLL | ES_AUTOVSCROLL, 0, 0, 0, 0, hWnd, (HMENU)1000, ((LPCREATESTRUCT)lParam)->hInstance, 0);
 		hStatic = CreateWindowEx(0, TEXT("STATIC"), 0, WS_VISIBLE | WS_CHILD, 0, 0, 0, 0, hWnd, 0, ((LPCREATESTRUCT)lParam)->hInstance, 0);
 		hBitmap = LoadBitmap(((LPCREATESTRUCT)lParam)->hInstance, MAKEINTRESOURCE(IDB_BITMAP1));
@@ -28,8 +26,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		MoveWindow(hEdit, 10, 10, 256, 32, TRUE);
-		MoveWindow(hButton, 10, 50, 256, 32, TRUE);
-		MoveWindow(hStatic, 10, 90, 256, 256, TRUE);
+		MoveWindow(hStatic, 10, 50, 256, 256, TRUE);
 		break;
 	case WM_SETFOCUS:
 		SetFocus(hEdit);
